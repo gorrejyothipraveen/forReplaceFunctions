@@ -1,11 +1,18 @@
-// 1. Festival Ribbon Count
-// A craft booth cuts ribbons of different colors throughout the day:
-// ["red", "blue", "red", "green", "red", "blue"]
-// They want to know how many blue ribbons were cut.
+
+// 2. Stargazing Log
+// A stargazing club logs visible constellations from each night:
+// ["Orion", "Leo"]
+// ["Taurus"]
+// ["Orion", "Gemini"]
+// Combine everyone’s observations into one list of all constellations spotted.
+
+
+const constellations = [["Orion", "Leo"], ["Taurus"], ["Orion", "Gemini"]];
+console.log(constellations.flat());
 
 const count = function (value, color) {
   return color === 'blue' ? value + 1 : value;
 }
 
 const ribbonCount = ["red", "blue", "red", "green", "red", "blue"];
-console.log(ribbonCount.reduce(count, 0));
+// console.log(ribbonCount.reduce(count, 0));
