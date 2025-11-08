@@ -18,22 +18,37 @@ const RibbonCount = function(array) {
 // console.log(constellations.flat());
 
 // console.log(ribbonCount.reduce(count, 0));
+const isArray = function (array) {
+  return typeof array === 'object';
+}
 
-function areEqual(list1, list2) {
-  if (list1.length !== list2.length) {
+function areEqual(array1, array2) {
+  if(array1.length === array2.length) {
     return false;
   }
-  for (let index = 0; index < list1.length; index++) {
-    if(list1[index] !== list2[index]) {
+  for (let index = 0; index < array1.length; index++) {
+    if(!areDeepEqual(array1[index], array2[index])) {
       return false;
     }
   }
   return true;
 }
 
+function areDeepEqual(array1, array2) {
+  if(typeof array1 !== typeof array2) {
+    return false;
+  }
+
+  if(isArray(array1) && isArray(array2)) {
+    return areEqual(array1, array2);
+  }
+
+  return array1 === array2;
+}
+
 function testFunctionality(description, input, taskToPerform, expected) {
   const actual = taskToPerform(input);
-  const resultSymbol = areEqual(actual, expected) ? '✅' : '❌';
+  const resultSymbol = areDeepEqual(actual, expected) ? '✅' : '❌';
   if (resultSymbol === '✅') {
     const workingCase = resultSymbol + description;
     return workingCase;
@@ -46,6 +61,10 @@ function testFunctionality(description, input, taskToPerform, expected) {
 }
 
 function testRibbonCount() {
+  console.log(testFunctionality('blue ribbon count is 2', ["red", "blue", "red", "green", "red", "blue"], RibbonCount,2));
+}
+
+function testConstellations() {
   console.log(testFunctionality('blue ribbon count is 2', ["red", "blue", "red", "green", "red", "blue"], RibbonCount,2));
 }
 
