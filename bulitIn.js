@@ -4,22 +4,34 @@
 // ["sparrow", "crow", "sparrow", "eagle", "crow"]
 // Create a list of the species without repeats, preserving the order first seen.
 
+// 4. Classroom Attendance Check
+// A class records names of students present for each period:
 
+// [["Asha", "Ravi", "Neel"], ["Ravi"], ["Asha", "Meera"]]
+// ['asha', 'ravi', 'neel', 'meera']
+// Determine which distinct students attended at least once.
 
-const isPresent = function (element, index, array) {
-  const list = array.slice(0, index);
-  return !list.includes(element);
+const attendence = array => {
+  return array.flat().reduce(insertIntoSet, [])
+}
+ 
+const insertIntoSet = (uniqueItems, element) => {
+  if (!uniqueItems.includes(element)) {
+    uniqueItems.push(element);
+    return uniqueItems;
+  } 
+  return uniqueItems;
 }
 
-const duplicateRemoval = function (array) {
-  return array.filter(isPresent);
+const removeDuplicate = function (array) {
+  return array.reduce(insertIntoSet, []);
 }
 
-const count = function (value, color) {
+const count = (value, color) => {
   return color === 'blue' ? value + 1 : value;
 }
 
-const RibbonCount = function (array) {
+const RibbonCount = array => {
   return array.reduce(count, 0);
 }
 
@@ -78,15 +90,20 @@ function testConstellations() {
   console.log(testFunctionality('blue ribbon count is 2', [["Orion", "Leo"], ["Taurus"], ["Orion", "Gemini"]], constellations, ["Orion", "Leo", "Taurus", "Orion", "Gemini"]));
 }
 
-function testDuplicateRemoval() {
-  console.log(testFunctionality('duplicate removing', ["sparrow", "crow", "sparrow", "eagle", "crow"], duplicateRemoval, ['sparrow', 'crow', 'eagle']));
-  console.log(testFunctionality('duplicate removing', [1, 1, 1, 1, 1], duplicateRemoval, [1]));
+function testRemoveDuplicate() {
+  console.log(testFunctionality('duplicate removing', ["sparrow", "crow", "sparrow", "eagle", "crow"], removeDuplicate, ['sparrow', 'crow', 'eagle']));
+  console.log(testFunctionality('duplicate removing', [1, 1, 1, 1, 1], removeDuplicate, [1]));
+}
+
+function testAttendence() {
+  console.log(testFunctionality('attendence', [["Asha", "Ravi", "Neel"], ["Ravi"], ["Asha", "Meera"]], attendence, ["Asha", "Ravi", "Neel", "Meera"]));
 }
 
 function testAll() {
   // testRibbonCount();
   // testConstellations();
-  testDuplicateRemoval();
+  // testRemoveDuplicate();
+  testAttendence();
 }
 
 testAll();
