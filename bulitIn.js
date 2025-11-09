@@ -1,25 +1,24 @@
-// 3. Birdwatching Duplicate Removal
-// A birdwatcher notes species seen during a morning walk:
+// 5. Candy Jar Stocking
+// A store logs candy refills like this:
 
-// ["sparrow", "crow", "sparrow", "eagle", "crow"]
-// Create a list of the species without repeats, preserving the order first seen.
+// [5, 3]
+// [2]
+// [4, 1]
+// Find the total number of candies added.
 
-// 4. Classroom Attendance Check
-// A class records names of students present for each period:
-
-// [["Asha", "Ravi", "Neel"], ["Ravi"], ["Asha", "Meera"]]
-// ['asha', 'ravi', 'neel', 'meera']
-// Determine which distinct students attended at least once.
+const compute = array => {
+  return array.flat().reduce((x, y) => { return x + y; }, 0);
+}
 
 const attendence = array => {
   return array.flat().reduce(insertIntoSet, [])
 }
- 
+
 const insertIntoSet = (uniqueItems, element) => {
   if (!uniqueItems.includes(element)) {
     uniqueItems.push(element);
     return uniqueItems;
-  } 
+  }
   return uniqueItems;
 }
 
@@ -99,11 +98,16 @@ function testAttendence() {
   console.log(testFunctionality('attendence', [["Asha", "Ravi", "Neel"], ["Ravi"], ["Asha", "Meera"]], attendence, ["Asha", "Ravi", "Neel", "Meera"]));
 }
 
+function testCompute() {
+  console.log(testFunctionality('nested array', [[1, 2], [3, 4], [5]], compute, 15));
+}
+
 function testAll() {
   // testRibbonCount();
   // testConstellations();
   // testRemoveDuplicate();
-  testAttendence();
+  // testAttendence();
+  testCompute();
 }
 
 testAll();
