@@ -4,14 +4,11 @@
 // ["sparrow", "crow", "sparrow", "eagle", "crow"]
 // Create a list of the species without repeats, preserving the order first seen.
 
-const status = function (element, index, array) {
-  const list = array.slice(0, index);
-  return !list.includes(element);
-}
+
 
 const isPresent = function (element, index, array) {
-  const list = array.map(status);
-  return list[index];
+  const list = array.slice(0, index);
+  return !list.includes(element);
 }
 
 const duplicateRemoval = function (array) {
