@@ -1,10 +1,16 @@
-// 5. Candy Jar Stocking
-// A store logs candy refills like this:
+// 6. Music Rehearsal Notes
+// Choir groups practice with sequences:
 
-// [5, 3]
-// [2]
-// [4, 1]
-// Find the total number of candies added.
+// [["mi", "fa", "so"], ["do", "mi"], ["fa"]]
+// Check whether any group sang "do".
+
+
+
+const isSequencePresent = array => {
+  return array.flat().some(x => x === 'do');
+}
+
+console.log(isSequencePresent([["mi", "fa", "so"], ["mi"], ["fa"]]));
 
 const compute = array => {
   return array.flat().reduce((x, y) => { return x + y; }, 0);
@@ -107,7 +113,7 @@ function testAll() {
   // testConstellations();
   // testRemoveDuplicate();
   // testAttendence();
-  testCompute();
+  // testCompute();
 }
 
 testAll();
